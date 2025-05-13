@@ -1,0 +1,5 @@
+venv/
+mlruns/
+logs/
+ML_OPS_PROJECT1.egg-info/
+inlaid-chassis-458918-k5-83afb40cf038.json
