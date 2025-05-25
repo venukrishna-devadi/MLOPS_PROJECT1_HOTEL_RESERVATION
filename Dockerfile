@@ -1,12 +1,12 @@
 # this docker file is for dockerizing for whole project
 # Use a lightweight Python image
-FROM python:slim
+FROM python:3.10-slim
 
-# Set environment variables to prevent Python from writing .pyc files & Ensure Python output is not buffered
+# Prevent Python from buffering and writing .pyc files
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-# Set the working directory
+# Set working directory inside container
 WORKDIR /app
 
 # Install system dependencies required by LightGBM
@@ -18,14 +18,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy the application code
 COPY . .
 
-# Install the package in editable mode
-RUN pip install --no-cache-dir -e .
+# ✅ Install Python dependencies from requirements.txt
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Train the model before running the application
 RUN python pipeline/training_pipeline.py
 
-# Expose the port that Flask will run on
+# Expose Flask port
 EXPOSE 5000
-
-# Command to run the app
-CMD ["python", "application.py"]
