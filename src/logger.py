@@ -6,7 +6,7 @@ LOGS_DIR = "logs"
 os.makedirs(LOGS_DIR, exist_ok= True)
 
 # now we want give the logfile name and path which we want to create
-LOG_FILE = os.path.join(LOGS_DIR, f"log_{datetime.now().strftime("%Y-%m_%d")}.log")
+LOG_FILE = os.path.join(LOGS_DIR, f"log_{datetime.now().strftime('%Y-%m_%d')}.log")
 
 # what info we want to show in the logfile
 logging.basicConfig(
