@@ -41,7 +41,7 @@ pipeline{
                     export PATH=$PATH:${GCLOUD_PATH}
                     gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
                     gcloud config set project ${GCP_PROJECT}
-                    gcloud auth configure-docker --quite
+                    gcloud auth configure-docker --quiet
 
                     docker build -t gcr.io/${GCP_POJECT}/ml-project:1 .
                     docker push gcr.io/${GCP_POJECT}/ml-project:1
